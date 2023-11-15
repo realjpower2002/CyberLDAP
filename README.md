@@ -12,6 +12,7 @@ To set up this project on your computer,
 
 To run this program, 
 -Run the command "cd server" to enter the server directory, and start the server using the command "node server.js" (without quotes). This will start the application server.
+
 -Run the command "cd .." and then "cd src" to enter the react app source directory, and then run the react command "npm start" (without quotes) in the source directory. This will start the react app, and open it in a new window on localhost:3000.
 
 The app can be logged into by typing the name of a user with a valid directory in server/root, with any password (the real authentication has not been implemented yet). Then, files can be uploaded on the upload page, or downloaded or deleted on the home page.

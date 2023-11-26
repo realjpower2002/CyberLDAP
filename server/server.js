@@ -3,6 +3,8 @@ const cors = require('cors');
 const fs = require('fs/promises'); // File system module with promises (Node.js v14.0.0 or later)
 const path = require('path');
 const multer = require('multer');
+const ldap = require('ldapjs');
+const jwt = require('jwt-simple');
 
 const app = express();
 const port = 3001;
@@ -103,4 +105,36 @@ app.delete('/root/:username/:filename', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+});
+
+function ldapAuthenticate(username, password, callback) {
+  const client = ldap.createClient({
+    url: 'http://localhost:${port}' // Replace with your LDAP server URL
+  });
+
+  const userDN = `uid=${username},ou=users,dc=example,dc=com`; // Adjust according to your LDAP structure
+
+  client.bind(userDN, password, (err) => {
+    if (err) {
+      callback(err, null); // Authentication failed
+    } else {
+      const token = jwt.encode({ username }, 'your-secret-key'); // Replace with your secret key
+
+      callback(null, token); // Authentication successful, provide token
+    }
+    client.unbind();
+  });
+}
+
+// Usage example
+ldapAuthenticate('yourUsername', 'yourPassword', (err, token) => {
+  if (err) {
+    console.error('LDAP authentication error:', err);
+  } else {
+    if (token) {
+      console.log('Authentication successful. Token:', token);
+    } else {
+      console.log('Authentication failed');
+    }
+  }
 });

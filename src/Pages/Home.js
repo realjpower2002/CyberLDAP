@@ -73,16 +73,16 @@ const Home = ( {isAuth, username} ) => {
   return (
     <>
       {isAuth &&
-      <div>
+      <div id="file-section" class="section">
         <h2>File List for {username} . . .</h2>
         <ul>
           {files.map((file, index) => (
             <>
               <li key={index}>
                 <h4>{file.filename}</h4>
-                <button onClick ={() => downloadFile(file.filename)}>Download</button>
-                <button onClick ={() => deleteFile(file.filename)}>Delete</button>
-                <pre>{file.content}</pre>
+                <button className="round-button" onClick ={() => downloadFile(file.filename)}>Download</button>
+                <button className="round-button" onClick ={() => deleteFile(file.filename)}>Delete</button>
+                <pre className='file-content'>{file.content}</pre>
               </li>
             </>
           ))}

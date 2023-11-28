@@ -23,11 +23,19 @@ const App = () => {
   }
 
   return (
+    <div className='top-nav'>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+      </head>
+      <div className='title-and-symbols'>
+        <span class="material-symbols-outlined">folder_data</span>
+        <span className='title'>File Uploader</span>
+      </div>
     <Router> 
-      <nav>
-        {isAuth && <button onClick = {signUserOut}>Log Out</button>}
-        {isAuth && <button onClick = {navigateToHome}>Home</button>}
-        {isAuth && <button onClick = {navigateToUpload}>Upload</button>}
+      <nav className="header"> 
+        {isAuth && <button className="header-button" onClick = {signUserOut}>Log Out</button>}
+        {isAuth && <button className="header-button" onClick = {navigateToHome}>Home</button>}
+        {isAuth && <button className="header-button" onClick = {navigateToUpload}>Upload</button>}
       </nav>
       <Routes>
         <Route path="/login" element={ <Login setIsAuth={setIsAuth} setUsername = {setUsername} username={username}/> } />
@@ -35,6 +43,7 @@ const App = () => {
         <Route path="/upload" element={ <Upload isAuth={isAuth} username={username}/> } />
       </Routes>
     </Router>
+    </div>
   );
 };
 

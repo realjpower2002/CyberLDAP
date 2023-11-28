@@ -33,14 +33,14 @@ const Upload = ( {isAuth, username} ) => {
   return (
     <>
       {isAuth &&
-      <div>
+      <div id="upload-section" class="section">
         <h2>Upload File for {username} . . .</h2>
         <label>
             Select File:
             <input type="file" onChange={handleFileChange} />
         </label>
         <br />
-        <button onClick={handleUpload}>Upload</button>
+        <button className="upload-button" onClick={handleUpload}>Upload</button>
       </div>
       }
     </>

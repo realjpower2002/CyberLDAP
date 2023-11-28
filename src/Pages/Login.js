@@ -26,8 +26,8 @@ const Login = ( {setIsAuth, setUsername, username} ) => {
         window.location.pathname = "/";
     };
 
-    return (
-        <div>
+    return ( 
+        <div id="login-section" class="section">
             <h2>Login Form</h2>
 
             <form onSubmit={handleLogin}>
